@@ -7,6 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="118*"/>
+            <RowDefinition Height="201*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="28*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="rect1" RenderTransformOrigin="0.5, 0.5" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" >
+            <Rectangle.RenderTransform>
+                <!-- giving the transform a name tells the framework not to freeze it -->
+                <RotateTransform x:Name="noFreeze" />
+            </Rectangle.RenderTransform>
+            <Rectangle.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation
+                                Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                To="360"
+                                Duration="0:0:0:5"
+                                RepeatBehavior="Forever" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Rectangle.Triggers>
+
+        </Rectangle>
     </Grid>
 </Window>
